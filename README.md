@@ -27,7 +27,7 @@ In this pattern:
 | **Syntax** | `viewModel.finish()` | `finish()` (Direct method call on self) |
 | **State Location** | Inside the `ViewModel` class. | Inside a dedicated `@Observable` class (e.g., `ViewState`). |
 | **Reusability** | Achieved by subclassing ViewModels or sharing instances. | Achieved by conforming different Views to the same Protocol (Mix-ins). |
-
+| **Testability** | Good, archived by extending the ViewModel to create a Mock | High, everything can be overriden. |
 ## Why POV is Better
 
 ### 1. Native SwiftUI Integration

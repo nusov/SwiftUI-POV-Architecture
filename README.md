@@ -43,7 +43,7 @@ While MVVM mixes state and logic inside the ViewModel, POV forces a cleaner spli
 This makes the state easier to serialize or debug, and the logic easier to test or reuse.
 
 ### 4. Logic Reusability (The "Mixin" Pattern)
-Because the logic lives in a Protocol, you can apply complex behaviors (like "OnboardingFlow" or "Pagination") to completely different Views just by adding the protocol conformance. You do not need to inherit from a specific ViewModel base class to get this functionality.
+Because the logic lives in a Protocol, you can apply complex behaviors (like "NavigationFlow" or "Pagination") to completely different Views just by adding the protocol conformance. You do not need to inherit from a specific ViewModel base class to get this functionality.
 
 ### 5. Reduced Indirection
 POV removes the layer of indirection between the View and the Logic. When a button is tapped, calling `goNext()` is immediately intuitive and traceable within the scope of the View, rather than jumping to a separate file to find the ViewModel implementation.

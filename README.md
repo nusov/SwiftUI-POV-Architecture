@@ -193,3 +193,36 @@ struct OnboardingViewPOV: View, @MainActor OnboardingProtocol {
         .environment(AppSeeder())
 }
 ```
+
+## Unit tests
+For unit testing you just need to define a MockView which will conform the protocol and provide dependencies
+
+```swift
+import SwiftData
+import Foundation
+@testable import YourApp
+
+@MainActor
+final class MockView: OnboardingProtocol {
+    // Required properties
+    var settingsManager = SettingsManager()
+    var roleService = RoleService()
+    var appSeeder = AppSeeder()
+    var state = OnboardingState()
+    var modelContext: ModelContext = .mockContext
+}
+
+@Suite @MainActor 
+struct OnboardingTests {
+    @Test func testNavigationBounds() {
+        let view = MockView()
+        
+        // Starts at welcome
+        #expect(view.state.currentStep == .welcome)
+        
+        // Cannot go backwards past welcome
+        view.goBack()
+        #expect(view.state.currentStep == .welcome)
+    }
+}
+```

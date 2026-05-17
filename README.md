@@ -1,7 +1,5 @@
-# SwiftUI-POV-Architecture
-Protocol Oriented View Architecture for modern SwiftUI applications
-
 # Protocol Oriented View (POV) Architecture
+Protocol Oriented View Architecture for modern SwiftUI applications
 
 ## Architecture Description
 The **Protocol Oriented View (POV)** architecture is a SwiftUI-specific pattern that shifts the responsibility of business logic from a separate class (ViewModel) to the View itself via Protocol Conformance.

@@ -226,3 +226,39 @@ struct OnboardingTests {
     }
 }
 ```
+
+## The MVVM trick
+One of the greatest benefits of this protocol-driven architecture is its inherent flexibility: you can switch back to a standard Model-View-ViewModel (MVVM) pattern at any time without changing a single line of your view's layout code. Just try it ;)
+
+```swift
+import SwiftData
+import Foundation
+
+@MainActor
+@Observable
+final class OnboardingViewModel: OnboardingProtocol {
+    // Dependencies
+    let settingsManager: SettingsManager
+    let roleService: RoleService
+    let appSeeder: AppSeeder
+    let modelContext: ModelContext
+
+    // View State
+    var state: OnboardingState
+
+    // Standard Dependency Injection Initializer
+    init(
+        settingsManager: SettingsManager,
+        roleService: RoleService,
+        appSeeder: AppSeeder,
+        modelContext: ModelContext,
+        initialState: OnboardingState = OnboardingState()
+    ) {
+        self.settingsManager = settingsManager
+        self.roleService = roleService
+        self.appSeeder = appSeeder
+        self.modelContext = modelContext
+        self.state = initialState
+    }
+}
+```

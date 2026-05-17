@@ -5,10 +5,10 @@ Protocol Oriented View Architecture for modern SwiftUI applications
 The **Protocol Oriented View (POV)** architecture is a SwiftUI-specific pattern that shifts the responsibility of business logic from a separate class (ViewModel) to the View itself via Protocol Conformance.
 
 In this pattern:
-1.  **The Protocol** defines the contract: the required dependencies (services, settings) and the functions (navigation, preparation).
+1.  **The Protocol** defines the contract: the required dependencies (services, modelContext) and the functions (business logic).
 2.  **The Protocol Extension** provides the **default implementation** of the logic. This allows the code to be written once and reused by any view conforming to the protocol.
 3.  **The View** conforms to the protocol. It holds the UI layout, declares its dependencies using `@Environment`, and manages a separate `@Observable` State class to hold data.
-4.  **The State** is a pure data class (`OnboardingState`) that handles the mutable properties, ensuring the View struct remains lightweight while keeping data persistence correct.
+4.  **The State** is a pure data class (`ViewState`) that handles the mutable properties, ensuring the View struct remains lightweight while keeping data persistence correct.
 
 ## Core Points
 *   **Logic Injection via Extensions:** Business logic is not inside the View or a ViewModel, but in a Protocol extension. This is "Composition over Inheritance."
@@ -24,8 +24,8 @@ In this pattern:
 | **Primary Actor** | The `ViewModel` class owns the logic and state. | The `View` struct owns the logic (via Protocol) and UI; a separate class owns the State. |
 | **Dependency Injection** | **Manual/Parent-Driven:** A parent View must fetch dependencies and inject them into the ViewModel's initializer. | **Automatic/Environment-Driven:** The View accesses dependencies directly via `@Environment`. |
 | **Boilerplate** | High. Requires a separate ViewModel class and often a parent View to initialize it. | Low. Logic lives in Protocol extensions; no separate class file for logic is required. |
-| **Syntax** | `viewModel.goNext()` | `goNext()` (Direct method call on self) |
-| **State Location** | Inside the `ViewModel` class. | Inside a dedicated `@Observable` class (e.g., `OnboardingState`). |
+| **Syntax** | `viewModel.finish()` | `finish()` (Direct method call on self) |
+| **State Location** | Inside the `ViewModel` class. | Inside a dedicated `@Observable` class (e.g., `ViewState`). |
 | **Reusability** | Achieved by subclassing ViewModels or sharing instances. | Achieved by conforming different Views to the same Protocol (Mix-ins). |
 
 ## Why POV is Better

@@ -228,7 +228,7 @@ struct OnboardingTests {
 ```
 
 ## The MVVM trick
-One of the greatest benefits of this protocol-driven architecture is its inherent flexibility: you can switch back to a standard Model-View-ViewModel (MVVM) pattern at any time without changing a single line of your view's layout code. Just try it ;)
+One of the greatest benefits of this protocol-driven architecture is its inherent flexibility: you can switch back to a standard Model-View-ViewModel (MVVM) pattern at any time without changing a single line of your view's layout code (just rename calls to viewModel.func())
 
 ```swift
 import SwiftData

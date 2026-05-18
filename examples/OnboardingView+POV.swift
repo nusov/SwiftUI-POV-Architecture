@@ -38,7 +38,6 @@ protocol OnboardingProtocol {
 
 extension OnboardingProtocol {
     func prepare() {
-        print("prepare")
         settingsManager.setBestVoice()
         appSeeder.seed(into: modelContext)
     }
@@ -95,7 +94,7 @@ struct OnboardingViewPOV: View, @MainActor OnboardingProtocol {
             Spacer()
 
             HStack(spacing: 16) {
-                if state.currentStep.isFirst {
+                if !state.currentStep.isFirst {
                     Button {
                         withAnimation(.spring(response: 0.4, dampingFraction: 0.8)) {
                             goBack()

@@ -55,7 +55,7 @@ Here is example implementation of Onboarding (Back, Next/Finish buttons and swit
 import SwiftUI
 import SwiftData
 
-enum OnboardingStep: CaseIterable, @MainActor CaseSteppabble {
+enum OnboardingStep: CaseIterable, @MainActor CaseSteppable {
     case welcome
     case privacy
     case role
@@ -72,27 +72,20 @@ final class OnboardingState {
 protocol OnboardingProtocol {
     var settingsManager: SettingsManager { get }
     var roleService: RoleService { get }
-    var appSeeder: AppSeeder { get }
     var modelContext: ModelContext { get }
     var state: OnboardingState { get set }
 
-    func prepare()
-    func finish()
     func goBack()
     func goNext()
+    func finish()
 }
 
 extension OnboardingProtocol {
-    func prepare() {
-        settingsManager.setBestVoice()
-        appSeeder.seed(into: modelContext)
-    }
-
     func finish() {
         if let roleId = state.selectedRoleId {
             roleService.createThreadForSelectedRole(
                 roleId: roleId,
-               settings: settingsManager,
+                settings: settingsManager,
                 context: modelContext
             )
         }
@@ -118,7 +111,6 @@ struct OnboardingViewPOV: View, @MainActor OnboardingProtocol {
     // Dependencies
     @EnvironmentObject var settingsManager: SettingsManager
     @Environment(RoleService.self) var roleService
-    @Environment(AppSeeder.self) var appSeeder
     @Environment(\.modelContext) var modelContext
 
     // View State
@@ -140,7 +132,7 @@ struct OnboardingViewPOV: View, @MainActor OnboardingProtocol {
             Spacer()
 
             HStack(spacing: 16) {
-                if state.currentStep.isFirst {
+                if !state.currentStep.isFirst {
                     Button {
                         withAnimation(.spring(response: 0.4, dampingFraction: 0.8)) {
                             goBack()
@@ -180,9 +172,6 @@ struct OnboardingViewPOV: View, @MainActor OnboardingProtocol {
             .padding(.horizontal, 20)
             .padding(.bottom, 24)
         }
-        .task {
-            prepare()
-        }
     }
 }
 
@@ -190,7 +179,6 @@ struct OnboardingViewPOV: View, @MainActor OnboardingProtocol {
     OnboardingViewPOV()
         .environmentObject(SettingsManager())
         .environment(RoleService())
-        .environment(AppSeeder())
 }
 ```
 

@@ -8,7 +8,7 @@
 import SwiftUI
 import SwiftData
 
-enum OnboardingStep: CaseIterable, @MainActor CaseSteppabble {
+enum OnboardingStep: CaseIterable, @MainActor CaseSteppable {
     case welcome
     case privacy
     case role

@@ -111,7 +111,7 @@ struct OnboardingViewPOV: View, @MainActor OnboardingProtocol {
     // Dependencies (:ObservableObject)
     @EnvironmentObject var settingsManager: SettingsManager
 
-    // Dependencies (@Observables)
+    // Dependencies (@Observable)
     @Environment(RoleService.self) var roleService
     @Environment(\.modelContext) var modelContext
 

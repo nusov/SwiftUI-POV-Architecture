@@ -205,11 +205,11 @@ import Foundation
 @MainActor
 final class MockView: OnboardingProtocol {
     // Required properties
-    var settingsManager = SettingsManager()
-    var roleService = RoleService()
-    var appSeeder = AppSeeder()
-    var state = OnboardingState()
+    var settingsManager = MockSettingsManager()
+    var roleService = MockRoleService()
     var modelContext: ModelContext = .mockContext
+
+    var state = OnboardingState()
 }
 
 @Suite @MainActor 

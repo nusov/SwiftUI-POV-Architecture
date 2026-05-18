@@ -29,19 +29,13 @@ protocol OnboardingProtocol {
     var modelContext: ModelContext { get }
     var state: OnboardingState { get set }
 
-    func prepare()
-    func finish()
+
     func goBack()
     func goNext()
-
+    func finish()
 }
 
 extension OnboardingProtocol {
-    func prepare() {
-        settingsManager.setBestVoice()
-        appSeeder.seed(into: modelContext)
-    }
-
     func finish() {
         if let roleId = state.selectedRoleId {
             roleService.createThreadForSelectedRole(
@@ -133,9 +127,6 @@ struct OnboardingViewPOV: View, @MainActor OnboardingProtocol {
             }
             .padding(.horizontal, 20)
             .padding(.bottom, 24)
-        }
-        .task {
-            prepare()
         }
     }
 }

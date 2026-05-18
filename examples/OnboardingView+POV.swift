@@ -40,7 +40,7 @@ extension OnboardingProtocol {
         if let roleId = state.selectedRoleId {
             roleService.createThreadForSelectedRole(
                 roleId: roleId,
-               settings: settingsManager,
+                settings: settingsManager,
                 context: modelContext
             )
         }

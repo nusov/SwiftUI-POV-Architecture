@@ -108,8 +108,10 @@ extension OnboardingProtocol {
 }
 
 struct OnboardingViewPOV: View, @MainActor OnboardingProtocol {
-    // Dependencies
+    // Dependencies (:ObservableObject)
     @EnvironmentObject var settingsManager: SettingsManager
+
+    // Dependencies (@Observables)
     @Environment(RoleService.self) var roleService
     @Environment(\.modelContext) var modelContext
 

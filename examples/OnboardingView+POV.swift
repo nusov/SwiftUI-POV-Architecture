@@ -25,10 +25,8 @@ final class OnboardingState {
 protocol OnboardingProtocol {
     var settingsManager: SettingsManager { get }
     var roleService: RoleService { get }
-    var appSeeder: AppSeeder { get }
     var modelContext: ModelContext { get }
     var state: OnboardingState { get set }
-
 
     func goBack()
     func goNext()
@@ -66,7 +64,6 @@ struct OnboardingViewPOV: View, @MainActor OnboardingProtocol {
     // Dependencies
     @EnvironmentObject var settingsManager: SettingsManager
     @Environment(RoleService.self) var roleService
-    @Environment(AppSeeder.self) var appSeeder
     @Environment(\.modelContext) var modelContext
 
     // View State
@@ -135,5 +132,4 @@ struct OnboardingViewPOV: View, @MainActor OnboardingProtocol {
     OnboardingViewPOV()
         .environmentObject(SettingsManager())
         .environment(RoleService())
-        .environment(AppSeeder())
 }

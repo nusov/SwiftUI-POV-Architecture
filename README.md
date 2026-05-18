@@ -223,6 +223,8 @@ struct OnboardingTests {
         // Cannot go backwards past welcome
         view.goBack()
         #expect(view.state.currentStep == .welcome)
+
+        // ...
     }
 
     // Other tests

@@ -288,7 +288,7 @@ struct HelloView: View, HelloViewProtocol {
 ## SwiftData 
 It's possible to observe SwiftData @Query directly in your protocol implementation (required SDK 26+)
 
-```
+```swift
 protocol HelloViewProtocol {
     var modelContext: ModelContext { get }
     var roles: [Role] { get }

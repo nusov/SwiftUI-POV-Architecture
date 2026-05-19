@@ -73,7 +73,7 @@ protocol OnboardingProtocol {
     var settingsManager: SettingsManager { get }
     var roleService: RoleService { get }
     var modelContext: ModelContext { get }
-    var state: OnboardingState { get set }
+    var state: OnboardingState { get }
 
     func goBack()
     func goNext()

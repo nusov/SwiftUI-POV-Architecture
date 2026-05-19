@@ -218,3 +218,110 @@ struct OnboardingTests {
     // Other tests
 }
 ```
+
+## Limitations
+You cannot mutate @State variables directly inside a protocol implemetation, because of the nature of View's @State macro, it's not expanded yet. Using `mutating` won't help.
+
+```swift
+protocol HelloViewProtocol {
+    var counter: Int { get set }
+    mutating func increment()
+}
+
+extension HelloViewProtocol {
+    func increment() {
+        counter += 1
+    }
+}
+
+struct HelloView: View, HelloViewProtocol {
+    @State var counter = 0
+    
+    var body: some View {
+        HStack {
+            Button("Counter: \(counter)") {
+                increment()
+            }
+        }
+    }
+}
+```
+
+will give you an error
+
+```
+HelloView.swift:29:17 Left side of mutating operator isn't mutable: 'self' is immutable
+```
+
+### Solution
+Move @State variables into your @Observable State class.
+```swift
+@Observable
+class HelloViewState {
+    var counter: Int = 0
+}
+
+protocol HelloViewProtocol {
+    var state: HelloViewState { get }
+    func increment()
+}
+
+extension HelloViewProtocol {
+    func increment() {
+        state.counter += 1
+    }
+}
+
+struct HelloView: View, HelloViewProtocol {
+    @State var state = HelloViewState()
+    
+    var body: some View {
+        HStack {
+            Button("Counter: \(state.counter)") {
+                increment()
+            }
+        }
+    }
+}
+```
+
+## SwiftData 
+It's possible to observe SwiftData @Query directly in your protocol implementation (required SDK 26+)
+
+```
+protocol HelloViewProtocol {
+    var modelContext: ModelContext { get }
+    var roles: [Role] { get }
+    func insert()
+}
+
+extension HelloViewProtocol {
+    func insert() {
+        let previousCount = roles.count
+        modelContext.insert(Role(name: UUID().uuidString, summary: "\(previousCount + 1)"))
+        
+        for item in roles {
+            print("Item: \(item.name)")
+        }
+    }
+}
+
+struct HelloView: View, HelloViewProtocol {
+    @Environment(\.modelContext) var modelContext
+    @Query(sort: \Role.name) var roles: [Role]
+    
+    var body: some View {
+        VStack {
+            List {
+                ForEach(roles) { item in
+                    Text(item.name)
+                }
+            }
+
+            Button("Insert") {
+                insert()
+            }
+        }
+    }
+}
+````

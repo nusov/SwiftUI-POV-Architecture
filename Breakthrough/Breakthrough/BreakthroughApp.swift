@@ -10,23 +10,26 @@ import SwiftData
 
 @main
 struct BreakthroughApp: App {
-    var sharedModelContainer: ModelContainer = {
-        let schema = Schema([
-            Item.self,
-        ])
-        let modelConfiguration = ModelConfiguration(schema: schema, isStoredInMemoryOnly: false)
+    // Create shared model container
+    private let sharedModelContainer = ModelContainer.sharedModelContainer
+    
+    // Create App State (Global)
+    private let appState = AppState()
 
-        do {
-            return try ModelContainer(for: schema, configurations: [modelConfiguration])
-        } catch {
-            fatalError("Could not create ModelContainer: \(error)")
-        }
-    }()
+    // Create App Settings (Persisted into UserDefaults using @AppStorage)
+    private let appSettings = AppSettings()
+    
+    // Create App Repository (Main data lifecycle)
+    private let appRepository = AppRepository()
 
+    // Application Scene Body
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            RootView()
         }
         .modelContainer(sharedModelContainer)
+        .environment(appState)
+        .environment(appSettings)
+        .environment(appRepository)
     }
 }

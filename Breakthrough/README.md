@@ -72,7 +72,7 @@ Breakthrough/
 
 | File | Description |
 |---|---|
-| `AppSchemaV1.swift` | Defines the SwiftData schema (version 1.0.0) with the `Topic` model (`name` + `summary`). |
+| `AppSchemaV1.swift` | Defines the SwiftData schema with the `Topic` model (`name` + `summary`). |
 | `AppMigrationPlan.swift` | Schema migration plan for SwiftData. Exposes `typealias Topic = CurrentSchema.Topic` for app-wide use. |
 | `AppRepository.swift` | `@Observable` class handling data lifecycle. Seeds the database with 3 architecture topics on first launch. Provides a `reset()` method to clear data and restart onboarding. |
 | `TopicRepository.swift` | Placeholder repository for topic-specific queries (available for future expansion). |

@@ -90,7 +90,7 @@ Breakthrough/
 | File | Description |
 |---|---|
 | `OnboardingView+POV.swift` | The **POV core**. Defines `OnboardingState` (with `OnboardingStep` enum), `OnboardingProtocol` (the contract), and its extension (the default implementation for `prepare`, `goBack`, `goNext`, `finish`). |
-| `OnboardingView.swift` | The View struct conforming to `OnboardingProtocol`. Declares `@Environment` dependencies and `@State` for `OnboardingState`. Layout includes step switching, Back/Next buttons, and error alerts. |
+| `OnboardingView.swift` | The View struct conforming to `OnboardingProtocol`. Declares `@Environment` dependencies and `@State` for `OnboardingState`. Layout includes step switching, Back/Next buttons. |
 | `WelcomeScreen.swift` | First onboarding step. Shows 3 core POV architecture points using `FeatureRow` components. |
 | `DesignScreen.swift` | Second onboarding step. Explains the 3 layers of POV architecture (Protocol, Extension, View) with a GitHub link. |
 | `TopicScreen.swift` | Third onboarding step. Queries `Topic` objects from SwiftData and displays them as selectable `SelectionCard` rows. Auto-selects the first topic. |

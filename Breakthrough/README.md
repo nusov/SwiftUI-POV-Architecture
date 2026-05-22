@@ -1,6 +1,6 @@
 # Breakthrough
 
-A macOS example app demonstrating the **Protocol Oriented View (POV)** architecture pattern in SwiftUI.
+An Universal SwiftUI example app demonstrating the **Protocol Oriented View (POV)** architecture pattern in SwiftUI.
 
 The app presents a 3-step onboarding flow — Welcome, Design, and Topic selection — built entirely around protocols, `@Observable` state, and SwiftUI's `@Environment` for dependency injection.
 

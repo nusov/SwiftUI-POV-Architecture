@@ -4,6 +4,11 @@ A macOS example app demonstrating the **Protocol Oriented View (POV)** architect
 
 The app presents a 3-step onboarding flow — Welcome, Design, and Topic selection — built entirely around protocols, `@Observable` state, and SwiftUI's `@Environment` for dependency injection.
 
+
+<img width="32%" height="2622" alt="Simulator Screenshot - iPhone 17 - 2026-05-22 at 20 37 40" src="https://github.com/user-attachments/assets/f897b021-c8ae-422d-b236-a188de7aad71" />
+<img width="32%" height="2622" alt="Simulator Screenshot - iPhone 17 - 2026-05-22 at 20 37 36" src="https://github.com/user-attachments/assets/08476ffc-c802-4404-82bd-ddeca782d6fe" />
+<img width="32%" height="2622" alt="Simulator Screenshot - iPhone 17 - 2026-05-22 at 20 37 45" src="https://github.com/user-attachments/assets/bf21f3c6-eb11-4a8b-bee0-6a2648dd4c06" />
+
 ## How It Works
 
 1. **BreakthroughApp** creates shared dependencies (`AppState`, `AppSettings`, `AppRepository`) and injects them into the SwiftUI environment.

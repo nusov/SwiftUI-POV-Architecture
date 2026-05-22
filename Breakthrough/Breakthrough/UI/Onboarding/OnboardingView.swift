@@ -78,13 +78,6 @@ struct OnboardingView: View, @MainActor OnboardingProtocol {
             .padding(.horizontal, 20)
             .padding(.bottom, 24)
         }
-        // Alerts
-        .alert("Database Error", isPresented: $state.showSeedError) {
-            Button("OK", role: .cancel) { }
-        } message: {
-            Text(state.seedErrorMessage)
-        }
-        // Tasks
         .task {
             prepare()
         }

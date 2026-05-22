@@ -21,8 +21,6 @@ final class OnboardingState {
     var selectedTopic: Topic?
     
     var hasPrepared = false
-    var showSeedError = false
-    var seedErrorMessage = ""
 }
 
 @MainActor
@@ -43,12 +41,7 @@ extension OnboardingProtocol {
         guard !state.hasPrepared else { return }
         state.hasPrepared = true
 
-        do {
-            try appRepository.seedIfNeeded(into: modelContext)
-        } catch {
-            state.seedErrorMessage = error.localizedDescription
-            state.showSeedError = true
-        }
+        try? appRepository.seedIfNeeded(into: modelContext)
     }
 
     func finish() {

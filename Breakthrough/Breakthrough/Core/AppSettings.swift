@@ -15,16 +15,16 @@ class AppSettings {
         @AppStorage("selectedTopic") var selectedTopic: String?
     }
     private let storage = Storage()
-    
+
     // MARK: - Manual synchrozation
     var hasCompletedOnboarding: Bool {
         didSet { storage.hasCompletedOnboarding = hasCompletedOnboarding }
     }
-    
+
     var selectedTopic: String? {
         didSet { storage.selectedTopic = selectedTopic }
     }
-    
+
     init() {
         self.hasCompletedOnboarding = storage.hasCompletedOnboarding
         self.selectedTopic = storage.selectedTopic

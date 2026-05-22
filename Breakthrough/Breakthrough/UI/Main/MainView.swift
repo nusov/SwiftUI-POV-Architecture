@@ -12,7 +12,7 @@ struct MainView: View {
     @Environment(\.modelContext) var modelContext
     @Environment(AppSettings.self) var appSettings
     @Environment(AppRepository.self) var appRepository
-    
+
     var body: some View {
         VStack {
             if let topic = appSettings.selectedTopic {

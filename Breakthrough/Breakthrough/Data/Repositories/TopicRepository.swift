@@ -8,5 +8,5 @@
 import SwiftData
 
 final class TopicRepository {
-    
+
 }

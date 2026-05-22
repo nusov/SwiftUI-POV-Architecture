@@ -12,7 +12,7 @@ extension ModelContainer {
     static func createContainer(isStoredInMemoryOnly: Bool) throws -> ModelContainer {
         let schema = Schema(versionedSchema: AppSchemaV1.self)
         let modelConfiguration = ModelConfiguration(schema: schema, isStoredInMemoryOnly: isStoredInMemoryOnly)
-        
+
         do {
             return try ModelContainer(
                 for: schema,
@@ -23,7 +23,7 @@ extension ModelContainer {
             fatalError("Failed to create ModelContainer: \(error)")
         }
     }
-    
+
     static var sharedModelContainer: ModelContainer {
         do {
             return try createContainer(isStoredInMemoryOnly: false)
@@ -31,7 +31,7 @@ extension ModelContainer {
             fatalError("Failed to created sharedModelContainer: \(error)")
         }
     }
-    
+
     static var previewContainer: ModelContainer {
         do {
             let container = try createContainer(isStoredInMemoryOnly: true)

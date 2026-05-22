@@ -10,7 +10,7 @@ import SwiftData
 
 struct RootView: View {
     @Environment(AppSettings.self) var appSettings
-    
+
     var body: some View {
         Group {
             if appSettings.hasCompletedOnboarding {
@@ -29,4 +29,3 @@ struct RootView: View {
         .environment(AppSettings())
         .environment(AppRepository())
 }
-

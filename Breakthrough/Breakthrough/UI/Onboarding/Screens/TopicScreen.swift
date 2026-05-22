@@ -70,7 +70,7 @@ struct TopicScreen: View {
 
 #Preview {
     @Previewable @Query var topics: [Topic]
-    @Previewable @State var selectedTopic: Topic? = nil
+    @Previewable @State var selectedTopic: Topic?
     TopicScreen(selectedTopic: $selectedTopic)
         .modelContainer(ModelContainer.previewContainer)
 }

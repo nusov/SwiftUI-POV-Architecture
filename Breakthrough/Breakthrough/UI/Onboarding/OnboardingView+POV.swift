@@ -16,10 +16,10 @@ final class OnboardingState {
         case design
         case topic
     }
-    
+
     var currentStep: OnboardingStep = .welcome
     var selectedTopic: Topic?
-    
+
     var hasPrepared = false
 }
 

@@ -16,7 +16,7 @@ struct OnboardingView: View, @MainActor OnboardingProtocol {
 
     // View state
     @State var state = OnboardingState()
-    
+
     // View layout
     var body: some View {
         // Root container
@@ -51,7 +51,6 @@ struct OnboardingView: View, @MainActor OnboardingProtocol {
                     }
                     .buttonStyle(.plain)
                 }
-
 
                 Button {
                     withAnimation(.spring(response: 0.4, dampingFraction: 0.8)) {
@@ -91,4 +90,3 @@ struct OnboardingView: View, @MainActor OnboardingProtocol {
         .environment(AppSettings())
         .environment(AppRepository())
 }
-

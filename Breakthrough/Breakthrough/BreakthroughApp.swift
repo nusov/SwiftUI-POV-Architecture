@@ -12,13 +12,13 @@ import SwiftData
 struct BreakthroughApp: App {
     // Create shared model container
     private let sharedModelContainer = ModelContainer.sharedModelContainer
-    
+
     // Create App State (Global)
     private let appState = AppState()
 
     // Create App Settings (Persisted into UserDefaults using @AppStorage)
     private let appSettings = AppSettings()
-    
+
     // Create App Repository (Main data lifecycle)
     private let appRepository = AppRepository()
 

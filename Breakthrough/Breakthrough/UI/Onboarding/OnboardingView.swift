@@ -11,7 +11,7 @@ import SwiftData
 struct OnboardingView: View, @MainActor OnboardingProtocol {
     // Dependencies
     @Environment(\.modelContext) var modelContext
-    @Environment(AppSettings.self) var appSettings
+    @Environment(AppState.self) var appState
     @Environment(AppRepository.self) var appRepository
 
     // View state
@@ -87,6 +87,6 @@ struct OnboardingView: View, @MainActor OnboardingProtocol {
 #Preview {
     OnboardingView()
         .modelContainer(ModelContainer.previewContainer)
-        .environment(AppSettings())
+        .environment(AppState())
         .environment(AppRepository())
 }

@@ -9,23 +9,23 @@ import SwiftUI
 import SwiftData
 
 struct RootView: View {
-    @Environment(AppSettings.self) var appSettings
+    @Environment(AppState.self) var appState
 
     var body: some View {
         Group {
-            if appSettings.hasCompletedOnboarding {
+            if appState.settings.hasCompletedOnboarding {
                 MainView()
             } else {
                 OnboardingView()
             }
         }
-        .animation(.easeInOut, value: appSettings.hasCompletedOnboarding)
+        .animation(.easeInOut, value: appState.settings.hasCompletedOnboarding)
     }
 }
 
 #Preview {
     RootView()
         .modelContainer(ModelContainer.previewContainer)
-        .environment(AppSettings())
+        .environment(AppState())
         .environment(AppRepository())
 }

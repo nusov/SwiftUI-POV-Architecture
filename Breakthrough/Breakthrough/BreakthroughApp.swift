@@ -16,9 +16,6 @@ struct BreakthroughApp: App {
     // Create App State (Global)
     private let appState = AppState()
 
-    // Create App Settings (Persisted into UserDefaults using @AppStorage)
-    private let appSettings = AppSettings()
-
     // Create App Repository (Main data lifecycle)
     private let appRepository = AppRepository()
 
@@ -29,7 +26,6 @@ struct BreakthroughApp: App {
         }
         .modelContainer(sharedModelContainer)
         .environment(appState)
-        .environment(appSettings)
         .environment(appRepository)
     }
 }

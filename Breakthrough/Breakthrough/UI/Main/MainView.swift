@@ -10,12 +10,12 @@ import SwiftData
 
 struct MainView: View {
     @Environment(\.modelContext) var modelContext
-    @Environment(AppSettings.self) var appSettings
+    @Environment(AppState.self) var appState
     @Environment(AppRepository.self) var appRepository
 
     var body: some View {
         VStack {
-            if let topic = appSettings.selectedTopic {
+            if let topic = appState.settings.selectedTopic {
                 Text(topic)
             } else {
                 Text("No Topic Selected")
@@ -23,7 +23,7 @@ struct MainView: View {
 
             Button("Reset") {
                 try? appRepository.reset(in: modelContext)
-                appSettings.hasCompletedOnboarding = false
+                appState.resetSettings()
             }
         }
 

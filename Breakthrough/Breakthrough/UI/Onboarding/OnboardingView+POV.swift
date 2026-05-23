@@ -26,7 +26,7 @@ final class OnboardingState {
 @MainActor
 protocol OnboardingProtocol {
     var modelContext: ModelContext { get }
-    var appSettings: AppSettings { get }
+    var appState: AppState { get }
     var appRepository: AppRepository { get }
     var state: OnboardingState { get }
 
@@ -46,10 +46,10 @@ extension OnboardingProtocol {
 
     func finish() {
         if let selectedTopic = state.selectedTopic {
-            appSettings.selectedTopic = selectedTopic.name
+            appState.settings.selectedTopic = selectedTopic.name
         }
 
-        appSettings.hasCompletedOnboarding = true
+        appState.settings.hasCompletedOnboarding = true
     }
 
     func goBack() {
